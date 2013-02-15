@@ -1,12 +1,6 @@
 
 <?php 
-    include_once "conn.php";
-
-			foreach($_GET as $key => $val){
-				$_GET[$key] = htmlspecialchars(stripslashes($_GET[$key]));
-				$_GET[$key] = mysql_escape_string($_GET[$key]);
-			}
-		if($_GET['key'] == $authkey){
+include_once "conn.php";
 ?>
 <html>
 <head>
@@ -24,6 +18,14 @@ tr:hover th {background:#F2F684; color:#1BA6B2}
 </style>
 </head>
 <body>
+<?php
+if($_POST['key'] == $authkey){
+	foreach($_POST as $key => $val){
+		$_POST[$key] = htmlspecialchars(stripslashes($_POST[$key]));
+		$_POST[$key] = mysql_escape_string($_POST[$key]);
+	}
+?>
+
 	<div class='dboard' align='center' style=''>
 	<table class='board' >
 	<tr>
@@ -36,15 +38,15 @@ tr:hover th {background:#F2F684; color:#1BA6B2}
 	</tr>
 
 <?php
-		$query = "select sid, name, phone, info, date, ip from $table where sid>1 order by sid desc";
-		$result = mysql_query($query) or die("ERROR");
-    $i = 0;
-    $none = true;
-    while(($tmp = mysql_fetch_array($result)))
-    {
-      $none = false;
-      if ($i%2==0) $str = "";
-      else $str = "class='odd'";
+	$query = "select sid, name, phone, info, date, ip from $table where sid>1 order by sid desc";
+	$result = mysql_query($query) or die("ERROR");
+	$i = 0;
+	$none = true;
+	while(($tmp = mysql_fetch_array($result)))
+	{
+		$none = false;
+		if ($i%2==0) $str = "";
+		else $str = "class='odd'";
 ?>
 <tr <?php echo $str;?>>
 	<td class='no'><?php echo $tmp['sid'];?>  </td>
@@ -55,28 +57,34 @@ tr:hover th {background:#F2F684; color:#1BA6B2}
 	<td class='ip'><?php echo $tmp['ip'];?> </td>
 </tr>
 <?php
-      $i += 1;
-		}
+		$i += 1;
+	}
 ?>
 <tr>
-  <td colspan=6 style='text-align:center'>
-    <h1 style='color: red'>
+	<td colspan=6 style='text-align:center'>
+		<h1 style='color: red'>
 		<font size='7'><?php echo "$i people applied";?></font>
-    </h1>
-  </td>
+		</h1>
+	</td>
 </tr>
 
 <?
-		mysql_free_result($result);
-		mysql_close();
+	mysql_free_result($result);
+	mysql_close();
 ?>
-		
+
 </table>
 	</div>
-</body></html>
 
 <?php
-	}else{
-		echo "404 Not Found.";
-	}
+}else{
 ?>
+<form method='post'>
+		Password: <input type='password' name='key' autofocus>
+		<input type='submit' value='auth'>
+	</form>
+<?
+}
+?>
+
+</body></html>
