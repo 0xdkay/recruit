@@ -1,11 +1,12 @@
 
 <?php 
+    include_once "conn.php";
 
 			foreach($_GET as $key => $val){
 				$_GET[$key] = htmlspecialchars(stripslashes($_GET[$key]));
 				$_GET[$key] = mysql_escape_string($_GET[$key]);
 			}
-	if($_GET['key'] == "dmdkdkdkdkdkdkdk"){
+		if($_GET['key'] == $authkey){
 ?>
 <html>
 <head>
@@ -35,7 +36,6 @@ tr:hover th {background:#F2F684; color:#1BA6B2}
 	</tr>
 
 <?php
-    include_once "conn.php";
 		$query = "select sid, name, phone, info, date, ip from $table where sid>1 order by sid desc";
 		$result = mysql_query($query) or die("ERROR");
     $i = 0;
@@ -57,22 +57,18 @@ tr:hover th {background:#F2F684; color:#1BA6B2}
 <?php
       $i += 1;
 		}
-
-    if ($none)
-    {
 ?>
 <tr>
   <td colspan=6 style='text-align:center'>
     <h1 style='color: red'>
-      <font size='7'>No one applied</font>
+		<font size='7'><?php echo "$i people applied";?></font>
     </h1>
   </td>
 </tr>
 
 <?
-    }
 		mysql_free_result($result);
-		mysql_close($mysql);
+		mysql_close();
 ?>
 		
 </table>
