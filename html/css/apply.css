@@ -1,0 +1,102 @@
+@charset 'utf-8'
+@font-face {
+	font-family: "Name";
+	src: url("../font/Vanib.ttf") format("truetype");
+}
+@font-face {
+	font-family: "Money";
+	src: url("../font/verdanai.ttf") format("truetype");
+}
+@font-face {
+	font-family: "Info";
+	src: url("../font/verdana.ttf") format("truetype");
+}
+#infoa {
+	position: absolute;
+	background: transparent;
+	font-family: "Info";
+	font-size: 15px;
+	width: 360px;
+	height: 300px;
+	left: 60px;
+	top: 140px;
+	border-color: #daae30;
+	overflow: auto;
+	color: gray;
+}
+
+#namea {
+	position: absolute;
+	background: transparent;
+	font-family: "tahoma";
+	font-size: 21px;
+	border-color: transparent;
+	left: 75px;
+	top: 490px;
+	width: 330px;
+	height: 35px;
+	text-align: center;
+	overflow: hidden;
+	color: gray;
+}
+
+#nameb {
+	position: absolute;
+	background: transparent;
+	font-family: "Name";
+	font-size: 15px;
+	border-color: transparent;
+	left: 75px;
+	top: 525px;
+	width: 330px;
+	height: 20px;
+	text-align: center;
+	overflow: hidden;
+	color: gray;
+}
+#money {
+	position: absolute;
+	background: transparent;
+	font-family: "Money";
+	font-size: 35px;
+	color: black;
+	border-color: transparent;
+	left: 70px;
+	top: 545px;
+	width: 340px;
+	height: 40px;
+	text-align: right;
+	overflow: hidden;
+}
+
+#c {
+	position: absolute;
+	background: url("../img/gon2.png");
+	font-family: "Name";
+	font-size: 35px;
+	color: black;
+	border-color: transparent;
+	border-width: 0;
+	left: 0px;
+	top: 615px;
+	width: 487px;
+	height: 85px;
+	text-align: center;
+	overflow: hidden;
+	cursor:pointer;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+body {
+	background: url('../img/gon.jpg');
+	background-repeat: no-repeat
+
+}
+
+
